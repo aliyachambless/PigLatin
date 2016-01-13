@@ -1,15 +1,15 @@
 import java.util.*;
-
+ArrayList<String> hymnWords = new ArrayList<String>();
 public void setup() {
 	String lines[] = loadStrings("words.txt");
 	String hymnLines[] = loadStrings("LowellHymn.txt");
-	ArrayList hymnWords[];
 	for(int i = 0; i < hymnLines.length; i++){
 		int begin = 0;
 		for(int x = 0; x < hymnLines[i].length(); x++){
-			if(hymnLines[i].charAt(x) == ' '){
-				hymnWords.add(hymnLines[i].substring(begin,i));
-				begin = i+1;
+			if(hymnLines[i].charAt(x) == ' ' || hymnLines[i].charAt(x) == ','){
+				hymnWords.add(hymnLines[i].substring(begin,x));
+				hymnWords.add(hymnLines[i].substring(x,x+1));
+				begin = x+1;
 			}
 		}
 	}
@@ -17,8 +17,17 @@ public void setup() {
 	for (int i = 0 ; i < lines.length; i++) {
 	  System.out.println(pigLatin(lines[i]));
 	}
-	for (int i = 0 ; i < hymnLines.length; i++) {
-	  System.out.println(pigLatin(hymnLines[i]));
+	for (int i = 0 ; i < hymnWords.size(); i++) {
+	  System.out.print(hymnWords.get(i));
+	}
+	System.out.println(" ");
+	for(int i = 0; i < hymnWords.size(); i++){
+		if(hymnWords.get(i).length() > 1){
+			System.out.print(pigLatin(hymnWords.get(i)));
+		}
+		else{
+			System.out.print(hymnWords.get(i));
+		}
 	}
 }
 public void draw()
