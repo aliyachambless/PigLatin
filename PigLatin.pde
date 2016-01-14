@@ -7,7 +7,7 @@ public void setup() {
 		int begin = 0;
 		for(int x = 0; x < hymnLines[i].length(); x++){
 			if(hymnLines[i].charAt(x) == ' ' || hymnLines[i].charAt(x) == ','){
-				hymnWords.add(hymnLines[i].substring(begin,x));
+				hymnWords.add(hymnLines[i].substring(begin,x).toLowerCase());
 				hymnWords.add(hymnLines[i].substring(x,x+1));
 				begin = x+1;
 			}
